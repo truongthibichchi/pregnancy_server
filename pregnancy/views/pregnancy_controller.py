@@ -5,9 +5,10 @@ from pregnancy.db_accessor.db_helper import call_proc
 
 
 @api_view(['GET'])
-def get_all_pregnancy_info(request):
+def get_all_summary_info(request):
     db_ret = call_proc(
-        'summary_info_get_all'
+        'summary_info_get_all',
+        []
     )
     return JsonResponse(
         {
@@ -20,12 +21,12 @@ def get_all_pregnancy_info(request):
 
 
 @api_view(['GET'])
-def get_pregnancy_info_by_title(request):
-    title = request.GET['title']
+def get_pregnancy_info_by_week(request):
+    week = request.GET['week']
 
     db_ret = call_proc(
-        'summary_info_get_by_title',
-        [title, ]
+        'summary_info_get_by_week',
+        [week, ]
     )
     return JsonResponse(
         {
@@ -35,3 +36,63 @@ def get_pregnancy_info_by_title(request):
         },
         safe=False
     )
+
+
+@api_view(['GET'])
+def get_user_log_in(request):
+    err = 0
+    msg = 'Login successfully'
+
+    email = request.GET['email']
+    password = request.GET['password']
+
+    db_ret = call_proc(
+        'get_user_log_in',
+        [email, password]
+    )
+    if db_ret is None:
+        err = 1
+        msg = 'Wrong username or password'
+        db_ret = ''
+    else:
+        db_ret = db_ret[0]
+
+    return JsonResponse(
+        {
+            'err': err,
+            'msg': msg,
+            'dt': db_ret,
+        },
+        safe=False
+    )
+
+@api_view(['GET'])
+def get_user_sign_up(request):
+    err = 0
+    msg = 'Sign up successfully'
+
+    email = request.GET['email']
+    password = request.GET['password']
+    fullname = request.GET['fullname']
+    conceivedDate = request.GET['conceivedDate']
+
+    db_ret = call_proc(
+        'get_user_sign_up',
+        [email, password, fullname, conceivedDate]
+    )
+    if db_ret is None:
+        err = 1
+        msg = 'Sign up failed'
+        db_ret = ''
+    else:
+        db_ret = db_ret[0]
+
+    return JsonResponse(
+        {
+            'err': err,
+            'msg': msg,
+            'dt': db_ret,
+        },
+        safe=False
+    )
+
