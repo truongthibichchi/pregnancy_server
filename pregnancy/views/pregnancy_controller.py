@@ -7,7 +7,7 @@ from pregnancy.db_accessor.db_helper import call_proc
 @api_view(['GET'])
 def get_all_summary_info(request):
     db_ret = call_proc(
-        'summary_info_get_all',
+        'get_all_summary_info',
         []
     )
     return JsonResponse(
@@ -21,11 +21,11 @@ def get_all_summary_info(request):
 
 
 @api_view(['GET'])
-def get_pregnancy_info_by_week(request):
+def get_baby_info_by_week(request):
     week = request.GET['week']
 
     db_ret = call_proc(
-        'summary_info_get_by_week',
+        'get_baby_info_by_week',
         [week, ]
     )
     return JsonResponse(
@@ -37,6 +37,59 @@ def get_pregnancy_info_by_week(request):
         safe=False
     )
 
+
+@api_view(['GET'])
+def get_mom_info_by_week(request):
+    week = request.GET['week']
+
+    db_ret = call_proc(
+        'get_mom_info_by_week',
+        [week, ]
+    )
+    return JsonResponse(
+        {
+            'err': 0,
+            'msg': '',
+            'dt': db_ret
+        },
+        safe=False
+    )
+
+
+@api_view(['GET'])
+def get_symptom_by_week(request):
+    week = request.GET['week']
+
+    db_ret = call_proc(
+        'get_symptom_by_week',
+        [week, ]
+    )
+    return JsonResponse(
+        {
+            'err': 0,
+            'msg': '',
+            'dt': db_ret
+        },
+        safe=False
+    )
+
+
+@api_view(['GET'])
+def get_advice_by_week(request):
+    week = request.GET['week']
+
+    db_ret = call_proc(
+        'get_advice_by_week',
+        [week, ]
+    )
+    return JsonResponse(
+        {
+            'err': 0,
+            'msg': '',
+            'dt': db_ret
+        },
+        safe=False
+    )
 
 @api_view(['GET'])
 def get_user_log_in(request):
