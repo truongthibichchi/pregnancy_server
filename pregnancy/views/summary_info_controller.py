@@ -91,6 +91,22 @@ def get_advice_by_week(request):
         safe=False
     )
 
+
+@api_view(['GET'])
+def get_all_glossary(request):
+    db_ret = call_proc(
+        'get_all_glossary', []
+    )
+    return JsonResponse(
+        {
+            'err': 0,
+            'msg': '',
+            'dt': db_ret
+        },
+        safe=False
+    )
+
+
 @api_view(['GET'])
 def get_user_log_in(request):
     err = 0
