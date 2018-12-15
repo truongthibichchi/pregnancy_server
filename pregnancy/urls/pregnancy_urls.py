@@ -17,4 +17,5 @@ pregnancy_pattern = [
     path('get-cooking-ingredient-by-cooking-id', c_controller.get_cooking_ingredient_by_cooking_id),
     path('get-cooking-step-by-cooking-id', c_controller.get_cooking_step_by_cooking_id),
     path('get-cooking-tip-by-cooking-id', c_controller.get_cooking_tip_by_cooking_id),
+    path('get-images', c_controller.get_food_images),
 ]

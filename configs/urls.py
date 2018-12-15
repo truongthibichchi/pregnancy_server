@@ -13,9 +13,12 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls.static import static
 from django.urls import path, include
 
+from configs import settings
 from pregnancy.urls import pregnancy_urls
+
 
 urlpatterns = [
     path('api/v1/', include(pregnancy_urls.pregnancy_pattern))
