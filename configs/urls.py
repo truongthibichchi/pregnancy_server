@@ -21,5 +21,5 @@ from pregnancy.urls import pregnancy_urls
 
 
 urlpatterns = [
-    path('api/v1/', include(pregnancy_urls.pregnancy_pattern))
+    path('api/', include(pregnancy_urls.pregnancy_pattern))
 ]
