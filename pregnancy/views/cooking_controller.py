@@ -1,6 +1,7 @@
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
 
+from configs.settings import SERVER_ENDPOINT
 from pregnancy.db_accessor.db_helper import call_proc
 from pregnancy.utils.media_helper import get_media_url
 
@@ -11,6 +12,8 @@ def get_all_cooking_info(request):
         'get_all_cooking_info',
         []
     )
+    for row in db_ret:
+        row['picture'] = SERVER_ENDPOINT+"/static/foods/"+row['picture']
     return JsonResponse(
         {
             'err': 0,
