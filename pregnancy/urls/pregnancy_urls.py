@@ -3,7 +3,7 @@ from django.urls import path
 from pregnancy.views import summary_info_controller as si_controller
 from pregnancy.views import cooking_controller as c_controller
 from pregnancy.views import sport_controller as s_controller
-
+from pregnancy.views import extend_controller as e_controller
 pregnancy_pattern = [
     path('get-user-log-in', si_controller.get_user_log_in),
     path('get-user-sign-up', si_controller.get_user_sign_up),
@@ -20,4 +20,5 @@ pregnancy_pattern = [
     path('get-cooking-tip-by-cooking-id', c_controller.get_cooking_tip_by_cooking_id),
     path('get-images', c_controller.get_food_images),
     path('get-all-sport-info', s_controller.get_all_sport_info),
+    path('get-all-image-for-baby', e_controller.get_all_image_for_baby),
 ]

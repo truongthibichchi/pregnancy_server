@@ -14,6 +14,9 @@ def get_all_sport_info(request):
 
     for row in db_ret:
         row['picture'] = SERVER_ENDPOINT+"/static/sports/picture/"+row['picture']
+        row['benefit'] = SERVER_ENDPOINT + "/static/sports/benefit/" + row['benefit']
+        row['step'] = SERVER_ENDPOINT + "/static/sports/step/" + row['step']
+        row['note'] = SERVER_ENDPOINT + "/static/sports/note/" + row['note']
     return JsonResponse(
         {
             'err': 0,
@@ -22,3 +25,4 @@ def get_all_sport_info(request):
         },
         safe=False
     )
+
